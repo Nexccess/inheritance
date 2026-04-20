@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>相続コラム | 相続リスク診断</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#f5f8f4;color:#1e2d1e;}
+.nav{background:#fff;border-bottom:1px solid #d4e4d0;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:54px;}
+.nav-logo{display:flex;align-items:baseline;gap:8px;}
+.nav-logo-main{font-size:15px;color:#2d5a3d;font-weight:500;letter-spacing:0.06em;}
+.nav-logo-sub{font-size:10px;color:#7aab88;letter-spacing:0.14em;}
+.nav-links{display:flex;gap:1.75rem;}
+.nav-links a{color:#4a6e54;font-size:12px;text-decoration:none;letter-spacing:0.06em;}
+.nav-links a.active{color:#2d5a3d;border-bottom:1.5px solid #3d8c5a;padding-bottom:2px;}
+.page-header{background:#fff;border-bottom:1px solid #d4e4d0;padding:2.5rem 2rem 2rem;}
+.page-header-inner{max-width:680px;margin:0 auto;}
+.page-eyebrow{font-size:10px;letter-spacing:0.2em;color:#7aab88;margin-bottom:0.75rem;font-family:'Noto Serif JP',serif;}
+.page-title{font-size:24px;color:#1e3a26;font-weight:300;letter-spacing:0.06em;font-family:'Noto Serif JP',serif;margin-bottom:0.5rem;}
+.page-sub{font-size:12px;color:#7a9a82;line-height:1.8;font-weight:300;}
+.filter-bar{background:#fff;border-bottom:1px solid #d4e4d0;padding:0 2rem;}
+.filter-inner{max-width:680px;margin:0 auto;display:flex;gap:0;overflow-x:auto;}
+.filter-btn{padding:12px 16px;font-size:11px;color:#7a9a82;letter-spacing:0.08em;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-family:'Noto Sans JP',sans-serif;}
+.filter-btn.active{color:#2d5a3d;border-bottom-color:#3d8c5a;font-weight:500;}
+.main{max-width:680px;margin:0 auto;padding:2rem;}
+.section-label{font-size:10px;letter-spacing:0.18em;color:#7aab88;margin-bottom:1rem;font-family:'Noto Serif JP',serif;}
+.featured-card{background:#fff;border:1px solid #d4e4d0;border-radius:4px;overflow:hidden;margin-bottom:2rem;cursor:pointer;}
+.fc-tag{background:#e8f4ec;border-bottom:1px solid #d4e4d0;padding:8px 1.25rem;display:flex;align-items:center;gap:8px;}
+.fc-tag-label{font-size:9px;letter-spacing:0.14em;color:#3d8c5a;font-weight:500;}
+.fc-tag-cat{font-size:9px;color:#7aab88;letter-spacing:0.08em;}
+.fc-body{padding:1.5rem 1.25rem;}
+.fc-date{font-size:10px;color:#aac4b0;letter-spacing:0.1em;margin-bottom:0.75rem;font-family:'Noto Serif JP',serif;}
+.fc-title{font-size:17px;color:#1e3a26;font-weight:300;line-height:1.65;letter-spacing:0.04em;font-family:'Noto Serif JP',serif;margin-bottom:0.75rem;}
+.fc-excerpt{font-size:12px;color:#6a8a72;line-height:2;font-weight:300;}
+.fc-footer{border-top:1px solid #eef4ee;padding:0.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center;}
+.fc-cats{display:flex;gap:6px;}
+.fc-cat{font-size:9px;color:#7aab88;background:#f0f7f2;border:1px solid #d4e4d0;border-radius:2px;padding:2px 8px;letter-spacing:0.06em;}
+.fc-read{font-size:11px;color:#3d8c5a;letter-spacing:0.06em;}
+.article-list{display:flex;flex-direction:column;gap:12px;margin-bottom:2rem;}
+.article-item{background:#fff;border:1px solid #d4e4d0;border-radius:4px;padding:1.25rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;cursor:pointer;}
+.ai-date{font-size:10px;color:#aac4b0;letter-spacing:0.1em;margin-bottom:6px;font-family:'Noto Serif JP',serif;}
+.ai-title{font-size:14px;color:#1e3a26;font-weight:300;line-height:1.7;letter-spacing:0.02em;font-family:'Noto Serif JP',serif;margin-bottom:8px;}
+.ai-excerpt{font-size:11px;color:#7a9a82;line-height:1.9;font-weight:300;}
+.ai-cats{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
+.ai-cat{font-size:9px;color:#7aab88;background:#f0f7f2;border:1px solid #d4e4d0;border-radius:2px;padding:2px 7px;letter-spacing:0.06em;}
+.ai-arrow{font-size:14px;color:#3d8c5a;flex-shrink:0;}
+.tool-banner{background:#1e3a26;border-radius:4px;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;}
+.tb-label{font-size:10px;letter-spacing:0.16em;color:#7aab88;margin-bottom:6px;}
+.tb-title{font-size:15px;color:#fff;font-weight:300;letter-spacing:0.04em;font-family:'Noto Serif JP',serif;}
+.tb-btn{background:#3d8c5a;color:#fff;border:none;padding:10px 20px;font-size:12px;letter-spacing:0.1em;border-radius:2px;cursor:pointer;white-space:nowrap;}
+.footer{background:#0a1628;padding:1.75rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;}
+.footer-copy{font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.06em;}
+</style>
+</head>
+<body>
+<nav class="nav">
+  <div class="nav-logo"><span class="nav-logo-main">相続リスク診断</span><span class="nav-logo-sub">by NEXCCESS</span></div>
+  <div class="nav-links"><a href="index.html">診断ツール</a><a href="column.html" class="active">コラム</a><a href="about.html">相続コンサルタントとは</a></div>
+</nav>
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="page-eyebrow">COLUMN</div>
+    <h1 class="page-title">相続コラム</h1>
+    <p class="page-sub">実際のコンサルティング案件をもとに、相続に関わる論点を整理します。</p>
+  </div>
+</div>
+<div class="filter-bar">
+  <div class="filter-inner">
+    <button class="filter-btn active">すべて</button>
+    <button class="filter-btn">事業承継・生命保険</button>
+    <button class="filter-btn">不動産相続</button>
+    <button class="filter-btn">二次相続</button>
+    <button class="filter-btn">相続放棄</button>
+  </div>
+</div>
+<div class="main">
+  <div class="section-label" style="margin-top:0.5rem;">LATEST</div>
+  <div class="featured-card">
+    <div class="fc-tag"><span class="fc-tag-label">PICKUP</span><span class="fc-tag-cat">事業承継・生命保険・二次相続</span></div>
+    <div class="fc-body">
+      <div class="fc-date">2026.04.01</div>
+      <h2 class="fc-title">会社経営者の親が急逝した日——保険・退職金・事業承継が、同時に動き出したとき</h2>
+      <p class="fc-excerpt">会社を経営する親が亡くなったとき、遺族が直面するのは「悲しみ」だけではない。逓増定期保険・死亡退職金・事業継承という三つの問題が一気に動き出した案件から見えてきたこと。</p>
+    </div>
+    <div class="fc-footer">
+      <div class="fc-cats"><span class="fc-cat">事業承継</span><span class="fc-cat">生命保険</span><span class="fc-cat">二次相続</span></div>
+      <span class="fc-read">読む →</span>
+    </div>
+  </div>
+  <div class="section-label">ARTICLES</div>
+  <div class="article-list">
+    <div class="article-item">
+      <div>
+        <div class="ai-date">2026.03.18</div>
+        <div class="ai-title">負債3.1億、資産2.3億の不動産を「放棄できない」理由——一棟マンションの相続で起きたこと</div>
+        <div class="ai-excerpt">相続放棄という言葉は知っていても、「放棄できない状況」があることを知っている人は少ない。不動産の最上階に母が住んでいた——その一点が、すべての選択肢を変えた。</div>
+        <div class="ai-cats"><span class="ai-cat">不動産相続</span><span class="ai-cat">相続放棄</span><span class="ai-cat">二次相続</span></div>
+      </div>
+      <span class="ai-arrow">→</span>
+    </div>
+    <div class="article-item">
+      <div>
+        <div class="ai-date">2026.03.05</div>
+        <div class="ai-title">配偶者に多く残すほど、次の相続が重くなる——二次相続という視点を持つだけで、判断が変わる</div>
+        <div class="ai-excerpt">配偶者控除を最大限活用すれば一次相続の税負担は下がる。しかしその選択が二次相続で重くのしかかることがある。時間軸で考える相続の設計。</div>
+        <div class="ai-cats"><span class="ai-cat">二次相続</span><span class="ai-cat">相続税</span><span class="ai-cat">配偶者控除</span></div>
+      </div>
+      <span class="ai-arrow">→</span>
+    </div>
+  </div>
+  <div class="tool-banner">
+    <div><div class="tb-label">AI TOOL</div><div class="tb-title">自分の状況を、まず整理する。</div></div>
+    <button class="tb-btn" onclick="location.href='index.html'">AI診断を試す</button>
+  </div>
+</div>
+<footer class="footer">
+  <div class="footer-logo">相続リスク診断 — by NEXCCESS</div>
+  <div class="footer-copy">© 2026 合同会社Nexcess. All rights reserved.</div>
+</footer>
+</body>
+</html>
