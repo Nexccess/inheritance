@@ -3,214 +3,215 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI相続一次診断</title>
+<title>相続リスク診断 | by NEXCCESS</title>
+<meta name="description" content="5つの質問に答えるだけで、相続に関する現状の整理と今後の視点をAIが即時提示します。">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
-  .container { width: 100%; max-width: 560px; }
-  .card { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-  .step { display: none; }
-  .step.active { display: block; }
-  h1 { font-size: 18px; font-weight: 600; margin-bottom: 6px; }
-  .subtitle { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 1.5rem; }
-  .progress { display: flex; gap: 4px; margin-bottom: 1.75rem; }
-  .progress-dot { height: 3px; flex: 1; border-radius: 2px; background: #e0e0e0; }
-  .progress-dot.done { background: #1a4faa; }
-  .q-label { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
-  .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
-  .radio-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: border-color 0.15s, background 0.15s; user-select: none; }
-  .radio-item:hover { border-color: #aac0e8; background: #f0f5ff; }
-  .radio-item.selected { border-color: #1a4faa; background: #eef3fc; }
-  .radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #ccc; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-  .radio-item.selected .radio-dot { border-color: #1a4faa; background: #1a4faa; }
-  .radio-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; display: none; }
-  .radio-item.selected .radio-dot::after { display: block; }
-  .radio-text { font-size: 14px; }
-  .btn { width: 100%; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
-  .btn-primary { background: #1a4faa; color: #fff; }
-  .btn-primary:hover { opacity: 0.88; }
-  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
-  .btn-outline { background: none; border: 1px solid #d0d0d0; color: #555; font-size: 13px; width: auto; padding: 8px 16px; margin-top: 10px; }
-  .btn-outline:hover { background: #f5f5f5; }
-  .loading { display: flex; align-items: center; gap: 12px; padding: 2.5rem 0; color: #666; font-size: 14px; }
-  .spinner { width: 20px; height: 20px; border: 2px solid #e0e0e0; border-top-color: #1a4faa; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .result-meta { font-size: 12px; color: #888; margin-bottom: 1.25rem; }
-  .result-block { margin-bottom: 1.25rem; }
-  .result-block:last-child { margin-bottom: 0; }
-  .result-label { font-size: 11px; font-weight: 600; color: #888; letter-spacing: 0.04em; margin-bottom: 6px; text-transform: uppercase; }
-  .result-text { font-size: 15px; line-height: 1.8; color: #1a1a1a; }
-  .divider { height: 1px; background: #f0f0f0; margin: 1.25rem 0; }
-  .line-box { background: #f7f9ff; border: 1px solid #dde6f5; border-radius: 8px; padding: 1.25rem; text-align: center; margin-top: 1.25rem; }
-  .line-box p { font-size: 13px; color: #555; margin-bottom: 10px; }
-  .line-btn { display: inline-block; background: #06C755; color: #fff; border-radius: 6px; padding: 10px 24px; font-size: 14px; font-weight: 600; text-decoration: none; }
-  .error-box { background: #fff5f5; border: 1px solid #fca5a5; border-radius: 8px; padding: 1rem 1.25rem; font-size: 14px; color: #7f1d1d; line-height: 1.6; margin-bottom: 1rem; }
-  .disclaimer { font-size: 11px; color: #aaa; line-height: 1.6; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #f0f0f0; }
-  .btn-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Noto Sans JP',sans-serif;background:#f5f8f4;color:#1e2d1e;}
+
+.nav{background:#fff;border-bottom:1px solid #d4e4d0;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:baseline;gap:8px;text-decoration:none;}
+.nav-logo-main{font-size:15px;color:#2d5a3d;font-weight:500;letter-spacing:0.06em;}
+.nav-logo-sub{font-size:10px;color:#7aab88;letter-spacing:0.14em;}
+.nav-links{display:flex;gap:1.75rem;}
+.nav-links a{color:#4a6e54;font-size:12px;text-decoration:none;letter-spacing:0.06em;font-weight:400;}
+.nav-links a:hover{color:#2d5a3d;}
+
+.hero{background:#fff;border-bottom:1px solid #d4e4d0;padding:4rem 2rem 3.5rem;}
+.hero-inner{max-width:680px;margin:0 auto;display:grid;grid-template-columns:1fr 190px;gap:2.5rem;align-items:center;}
+.hero-eyebrow{font-size:10px;letter-spacing:0.2em;color:#7aab88;margin-bottom:1.25rem;font-family:'Noto Serif JP',serif;}
+.hero-title{font-size:28px;color:#1e3a26;font-weight:300;line-height:1.7;margin-bottom:1.25rem;letter-spacing:0.04em;font-family:'Noto Serif JP',serif;}
+.hero-title em{font-style:normal;color:#3d8c5a;}
+.hero-sub{font-size:13px;color:#5a7a62;line-height:2.1;margin-bottom:2rem;font-weight:300;}
+.hero-cta{display:inline-block;background:#3d8c5a;color:#fff;padding:13px 32px;font-size:13px;letter-spacing:0.1em;text-decoration:none;font-weight:400;border-radius:2px;}
+.hero-cta:hover{background:#2d7a4a;}
+.hero-note{font-size:10px;color:#aac4b0;margin-top:0.75rem;letter-spacing:0.04em;}
+.hero-visual{display:flex;flex-direction:column;gap:8px;}
+.hero-badge{background:#f0f7f2;border:1px solid #c8dfc8;border-radius:4px;padding:1.25rem;text-align:center;}
+.hero-badge-num{font-size:26px;color:#3d8c5a;font-weight:300;font-family:'Noto Serif JP',serif;line-height:1;}
+.hero-badge-label{font-size:10px;color:#7aab88;letter-spacing:0.1em;margin-top:4px;}
+.hero-badge-sm{background:#f0f7f2;border:1px solid #c8dfc8;border-radius:4px;padding:0.9rem;text-align:center;}
+.hero-badge-sm-num{font-size:16px;color:#3d8c5a;font-weight:300;font-family:'Noto Serif JP',serif;}
+.hero-badge-sm-label{font-size:10px;color:#7aab88;letter-spacing:0.08em;}
+
+.about-strip{background:#fff;border-bottom:1px solid #d4e4d0;padding:2.5rem 2rem;}
+.about-inner{max-width:680px;margin:0 auto;}
+.section-label{font-size:10px;letter-spacing:0.18em;color:#7aab88;margin-bottom:0.75rem;font-family:'Noto Serif JP',serif;}
+.about-title{font-size:18px;color:#1e3a26;font-weight:300;font-family:'Noto Serif JP',serif;margin-bottom:0.75rem;letter-spacing:0.04em;}
+.about-text{font-size:13px;color:#5a7a62;line-height:2.1;font-weight:300;}
+
+.tools{background:#f5f8f4;padding:3rem 2rem;}
+.tools-inner{max-width:680px;margin:0 auto;}
+.tools-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:1rem;}
+.tool-card{background:#fff;border:1px solid #d4e4d0;border-radius:4px;padding:1.5rem;text-decoration:none;display:block;transition:border-color 0.15s;}
+.tool-card:hover{border-color:#3d8c5a;}
+.tool-card.featured{border-color:#3d8c5a;}
+.tool-badge{display:inline-block;background:#e8f4ec;color:#2d6e44;font-size:9px;letter-spacing:0.1em;padding:2px 8px;border-radius:2px;margin-bottom:0.5rem;}
+.tool-num{font-size:10px;color:#7aab88;letter-spacing:0.14em;margin-bottom:0.6rem;font-family:'Noto Serif JP',serif;}
+.tool-name{font-size:13px;color:#1e3a26;font-weight:500;margin-bottom:0.5rem;line-height:1.6;letter-spacing:0.02em;}
+.tool-desc{font-size:11px;color:#7a9a82;line-height:1.8;font-weight:300;}
+.tool-arrow{font-size:11px;color:#3d8c5a;margin-top:1rem;letter-spacing:0.06em;}
+
+.column-strip{background:#fff;border-top:1px solid #d4e4d0;padding:3rem 2rem;}
+.column-inner{max-width:680px;margin:0 auto;}
+.column-list{display:flex;flex-direction:column;margin-top:1rem;}
+.column-item{padding:1rem 0;border-bottom:1px solid #e8f0e8;display:grid;grid-template-columns:80px 1fr;gap:1rem;align-items:baseline;text-decoration:none;}
+.column-item:hover .col-title{color:#3d8c5a;}
+.col-date{font-size:10px;color:#aac4b0;letter-spacing:0.08em;font-family:'Noto Serif JP',serif;}
+.col-title{font-size:13px;color:#1e2d1e;font-weight:300;line-height:1.7;}
+.col-more{font-size:11px;color:#3d8c5a;margin-top:1.25rem;letter-spacing:0.08em;text-align:right;text-decoration:none;display:block;}
+.col-more:hover{opacity:0.7;}
+
+.about-block{background:#1e3a26;padding:3rem 2rem;}
+.about-block-inner{max-width:680px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:3rem;align-items:center;}
+.ab-label{font-size:10px;letter-spacing:0.18em;color:#7aab88;margin-bottom:1rem;font-family:'Noto Serif JP',serif;}
+.ab-title{font-size:17px;color:#fff;font-weight:300;line-height:1.8;letter-spacing:0.04em;margin-bottom:1rem;font-family:'Noto Serif JP',serif;}
+.ab-text{font-size:12px;color:rgba(255,255,255,0.5);line-height:2.1;font-weight:300;}
+.ab-link{font-size:11px;color:#7aab88;letter-spacing:0.1em;margin-top:1.25rem;display:block;text-decoration:none;}
+.ab-link:hover{color:#9fcfad;}
+.ab-card{background:rgba(255,255,255,0.06);border:1px solid rgba(122,171,136,0.3);border-radius:4px;padding:1.5rem;}
+.ab-card-label{font-size:10px;color:#7aab88;letter-spacing:0.12em;margin-bottom:0.75rem;}
+.ab-card-name{font-size:17px;color:#fff;font-weight:300;letter-spacing:0.08em;margin-bottom:0.4rem;font-family:'Noto Serif JP',serif;}
+.ab-card-sub{font-size:11px;color:rgba(255,255,255,0.4);line-height:2;font-weight:300;}
+.ab-card-creds{display:flex;flex-direction:column;gap:4px;margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(122,171,136,0.2);}
+.ab-card-cred{font-size:10px;color:rgba(255,255,255,0.35);letter-spacing:0.04em;}
+
+.footer{background:#0a1628;padding:1.75rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+.footer-logo{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;}
+.footer-copy{font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.06em;}
+
+@media(max-width:560px){
+  .hero-inner{grid-template-columns:1fr;}
+  .hero-visual{display:grid;grid-template-columns:repeat(3,1fr);}
+  .tools-grid{grid-template-columns:1fr;}
+  .about-block-inner{grid-template-columns:1fr;}
+  .nav-links{gap:1rem;}
+  .nav-links a{font-size:11px;}
+}
 </style>
 </head>
 <body>
-<div class="container">
-<div class="card">
 
-  <!-- Q1 年代 -->
-  <div class="step active" id="step-1">
-    <div class="progress"><div class="progress-dot done"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div></div>
-    <h1>AI相続一次診断</h1>
-    <p class="subtitle">5つの質問に答えるだけで、現状の整理と今後の視点を提示します。</p>
-    <div class="q-label">Q1. 現在の年代を教えてください</div>
-    <div class="radio-group" id="rg-age">
-      <div class="radio-item" data-val="40代未満"><div class="radio-dot"></div><span class="radio-text">40代未満</span></div>
-      <div class="radio-item" data-val="40代"><div class="radio-dot"></div><span class="radio-text">40代</span></div>
-      <div class="radio-item" data-val="50代"><div class="radio-dot"></div><span class="radio-text">50代</span></div>
-      <div class="radio-item" data-val="60代"><div class="radio-dot"></div><span class="radio-text">60代</span></div>
-      <div class="radio-item" data-val="70代以上"><div class="radio-dot"></div><span class="radio-text">70代以上</span></div>
+<nav class="nav">
+  <a href="index.html" class="nav-logo">
+    <span class="nav-logo-main">相続リスク診断</span>
+    <span class="nav-logo-sub">by NEXCCESS</span>
+  </a>
+  <div class="nav-links">
+    <a href="diagnosis.html">診断ツール</a>
+    <a href="column.html">コラム</a>
+    <a href="about.html">相続コンサルタントとは</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      <div class="hero-eyebrow">INHERITANCE RISK DIAGNOSIS</div>
+      <h1 class="hero-title">相続は、<em>気づいたとき</em>に<br>はじめて動き出す。</h1>
+      <p class="hero-sub">5つの質問に答えるだけで、あなたの現状と<br>今後の視点をAIが整理します。</p>
+      <a href="diagnosis.html" class="hero-cta">今すぐ診断する</a>
+      <p class="hero-note">法律・税務上の判断・助言を行うものではありません</p>
     </div>
-    <button class="btn btn-primary" id="btn-1" disabled onclick="nextStep(1,'age')">次へ</button>
-  </div>
-
-  <!-- Q2 配偶者 -->
-  <div class="step" id="step-2">
-    <div class="progress"><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot"></div><div class="progress-dot"></div><div class="progress-dot"></div></div>
-    <h1>AI相続一次診断</h1>
-    <p class="subtitle">&nbsp;</p>
-    <div class="q-label">Q2. 配偶者（または事実婚のパートナー）はいますか？</div>
-    <div class="radio-group" id="rg-spouse">
-      <div class="radio-item" data-val="いる"><div class="radio-dot"></div><span class="radio-text">いる</span></div>
-      <div class="radio-item" data-val="いない"><div class="radio-dot"></div><span class="radio-text">いない</span></div>
-    </div>
-    <button class="btn btn-primary" id="btn-2" disabled onclick="nextStep(2,'spouse')">次へ</button>
-  </div>
-
-  <!-- Q3 子 -->
-  <div class="step" id="step-3">
-    <div class="progress"><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot"></div><div class="progress-dot"></div></div>
-    <h1>AI相続一次診断</h1>
-    <p class="subtitle">&nbsp;</p>
-    <div class="q-label">Q3. お子さんはいますか？</div>
-    <div class="radio-group" id="rg-children">
-      <div class="radio-item" data-val="いる"><div class="radio-dot"></div><span class="radio-text">いる</span></div>
-      <div class="radio-item" data-val="いない"><div class="radio-dot"></div><span class="radio-text">いない</span></div>
-    </div>
-    <button class="btn btn-primary" id="btn-3" disabled onclick="nextStep(3,'children')">次へ</button>
-  </div>
-
-  <!-- Q4 不動産 -->
-  <div class="step" id="step-4">
-    <div class="progress"><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot"></div></div>
-    <h1>AI相続一次診断</h1>
-    <p class="subtitle">&nbsp;</p>
-    <div class="q-label">Q4. 不動産（自宅・土地・投資物件など）を保有していますか？</div>
-    <div class="radio-group" id="rg-realestate">
-      <div class="radio-item" data-val="ある"><div class="radio-dot"></div><span class="radio-text">ある</span></div>
-      <div class="radio-item" data-val="ない"><div class="radio-dot"></div><span class="radio-text">ない</span></div>
-    </div>
-    <button class="btn btn-primary" id="btn-4" disabled onclick="nextStep(4,'realestate')">次へ</button>
-  </div>
-
-  <!-- Q5 事業 -->
-  <div class="step" id="step-5">
-    <div class="progress"><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div><div class="progress-dot done"></div></div>
-    <h1>AI相続一次診断</h1>
-    <p class="subtitle">&nbsp;</p>
-    <div class="q-label">Q5. 事業や自社株を保有していますか？</div>
-    <div class="radio-group" id="rg-business">
-      <div class="radio-item" data-val="ある"><div class="radio-dot"></div><span class="radio-text">ある（経営者・役員・個人事業主など）</span></div>
-      <div class="radio-item" data-val="ない"><div class="radio-dot"></div><span class="radio-text">ない</span></div>
-    </div>
-    <button class="btn btn-primary" id="btn-5" disabled onclick="diagnose()">診断する</button>
-  </div>
-
-  <!-- Loading -->
-  <div class="step" id="step-loading">
-    <div class="loading"><div class="spinner"></div><span>現状を整理しています...</span></div>
-  </div>
-
-  <!-- Result -->
-  <div class="step" id="step-result">
-    <h1>診断結果</h1>
-    <p class="result-meta" id="result-meta"></p>
-    <div class="result-block"><div class="result-label">1. 現状の整理</div><div class="result-text" id="r1"></div></div>
-    <div class="divider"></div>
-    <div class="result-block"><div class="result-label">2. 今のまま進んだ場合に起きやすいこと</div><div class="result-text" id="r2"></div></div>
-    <div class="divider"></div>
-    <div class="result-block"><div class="result-label">3. 今後考えておきたい視点</div><div class="result-text" id="r3"></div></div>
-    <div class="line-box">
-      <p>考えるタイミングの目安を見る</p>
-      <a class="line-btn" href="https://line.me/R/" target="_blank">LINEで受け取る</a>
-    </div>
-    <button class="btn btn-outline" onclick="restart()">はじめからやり直す</button>
-    <p class="disclaimer">本診断は一般的な状況整理を目的としたものであり、法律・税務上の判断・助言を行うものではありません。個別の状況については専門家にご確認ください。</p>
-  </div>
-
-  <!-- Error -->
-  <div class="step" id="step-error">
-    <div class="error-box" id="error-msg"></div>
-    <div class="btn-row">
-      <button class="btn btn-outline" onclick="diagnose()">もう一度試す</button>
-      <button class="btn btn-outline" onclick="restart()">最初からやり直す</button>
+    <div class="hero-visual">
+      <div class="hero-badge">
+        <div class="hero-badge-num">5問</div>
+        <div class="hero-badge-label">QUESTIONS</div>
+      </div>
+      <div class="hero-badge-sm">
+        <div class="hero-badge-sm-num">約1分</div>
+        <div class="hero-badge-sm-label">ALL FREE</div>
+      </div>
+      <div class="hero-badge-sm">
+        <div class="hero-badge-sm-num">即時表示</div>
+        <div class="hero-badge-sm-label">AI RESULT</div>
+      </div>
     </div>
   </div>
+</section>
 
-</div>
-</div>
+<section class="about-strip">
+  <div class="about-inner">
+    <div class="section-label">ABOUT THIS SITE</div>
+    <h2 class="about-title">「相続」を、整理する場所。</h2>
+    <p class="about-text">相続は、突然始まる。備えた人と備えなかった人で、その後の展開は大きく変わる。本サイトは解決策を売らない。あなた自身が状況を把握し、判断できる状態をつくることを目的としている。</p>
+  </div>
+</section>
 
-<script>
-const answers = {};
-const RG_MAP = { age: 'rg-age', spouse: 'rg-spouse', children: 'rg-children', realestate: 'rg-realestate', business: 'rg-business' };
-const BTN_MAP = { 'rg-age': 'btn-1', 'rg-spouse': 'btn-2', 'rg-children': 'btn-3', 'rg-realestate': 'btn-4', 'rg-business': 'btn-5' };
+<section class="tools">
+  <div class="tools-inner">
+    <div class="section-label">CONTENTS</div>
+    <div class="tools-grid">
+      <a href="diagnosis.html" class="tool-card featured">
+        <div class="tool-badge">AI TOOL</div>
+        <div class="tool-num">01</div>
+        <div class="tool-name">AI相続<br>リスク診断</div>
+        <div class="tool-desc">5問・約1分。現状の整理と今後の視点を即時提示。</div>
+        <div class="tool-arrow">診断する →</div>
+      </a>
+      <a href="column.html" class="tool-card">
+        <div class="tool-num">02</div>
+        <div class="tool-name">相続コラム</div>
+        <div class="tool-desc">実際の案件をもとに、相続の論点を事例ベースで解説。</div>
+        <div class="tool-arrow">一覧を見る →</div>
+      </a>
+      <a href="about.html" class="tool-card">
+        <div class="tool-num">03</div>
+        <div class="tool-name">相続コンサルタントとは</div>
+        <div class="tool-desc">Nexcessの実務知見と、相談までの流れを紹介。</div>
+        <div class="tool-arrow">詳細を見る →</div>
+      </a>
+    </div>
+  </div>
+</section>
 
-Object.entries(RG_MAP).forEach(([key, id]) => {
-  document.getElementById(id).querySelectorAll('.radio-item').forEach(item => {
-    item.addEventListener('click', () => {
-      document.getElementById(id).querySelectorAll('.radio-item').forEach(i => i.classList.remove('selected'));
-      item.classList.add('selected');
-      answers[key] = item.dataset.val;
-      document.getElementById(BTN_MAP[id]).disabled = false;
-    });
-  });
-});
+<section class="column-strip">
+  <div class="column-inner">
+    <div class="section-label">COLUMN — 最新記事</div>
+    <div class="column-list">
+      <a href="column.html" class="column-item">
+        <span class="col-date">2026.04.01</span>
+        <span class="col-title">会社経営者の親が急逝した日——保険・退職金・事業承継が、同時に動き出したとき</span>
+      </a>
+      <a href="column.html" class="column-item">
+        <span class="col-date">2026.03.18</span>
+        <span class="col-title">負債3.1億、資産2.3億の不動産を「放棄できない」理由——一棟マンションの相続で起きたこと</span>
+      </a>
+      <a href="column.html" class="column-item">
+        <span class="col-date">2026.03.05</span>
+        <span class="col-title">配偶者に多く残すほど、次の相続が重くなる——二次相続という視点を持つだけで、判断が変わる</span>
+      </a>
+    </div>
+    <a href="column.html" class="col-more">コラム一覧 →</a>
+  </div>
+</section>
 
-function nextStep(from, key) {
-  showStep('step-' + (from + 1));
-}
+<section class="about-block">
+  <div class="about-block-inner">
+    <div>
+      <div class="ab-label">NEXCCESS</div>
+      <h3 class="ab-title">実務家として、<br>事業と資産に向き合う。</h3>
+      <p class="ab-text">合同会社Nexcessは、法務・財務・税務の実務に特化したコンサルティングファームです。本サイトの診断・コラムは、Nexcessの実務知見をベースに設計されています。</p>
+      <a href="https://nexccess.com" target="_blank" class="ab-link">nexccess.com →</a>
+    </div>
+    <div class="ab-card">
+      <div class="ab-card-label">REPRESENTATIVE</div>
+      <div class="ab-card-name">中村 景太</div>
+      <div class="ab-card-sub">合同会社Nexccess 代表<br>経営・法務・税務コンサルタント</div>
+      <div class="ab-card-creds">
+        <span class="ab-card-cred">CFP（認定ファイナンシャルプランナー）</span>
+        <span class="ab-card-cred">日商簿記1級</span>
+        <span class="ab-card-cred">証券外務員 / 生保・損保募集人資格</span>
+      </div>
+    </div>
+  </div>
+</section>
 
-function showStep(id) {
-  document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-}
+<footer class="footer">
+  <div class="footer-logo">相続リスク診断 — by NEXCCESS</div>
+  <div class="footer-copy">© 2026 合同会社Nexcess. All rights reserved.</div>
+</footer>
 
-async function diagnose() {
-  showStep('step-loading');
-  try {
-    const res = await fetch('/api/diagnose', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(answers),
-    });
-    const data = await res.json();
-    if (!res.ok || data.error) {
-      document.getElementById('error-msg').textContent = data.error || '不明なエラーが発生しました';
-      showStep('step-error');
-      return;
-    }
-    document.getElementById('r1').textContent = data.r1;
-    document.getElementById('r2').textContent = data.r2;
-    document.getElementById('r3').textContent = data.r3;
-    document.getElementById('result-meta').textContent = data.meta;
-    showStep('step-result');
-  } catch (e) {
-    document.getElementById('error-msg').textContent = 'ネットワークエラーが発生しました。しばらく待ってから再度お試しください。';
-    showStep('step-error');
-  }
-}
-
-function restart() {
-  Object.keys(answers).forEach(k => delete answers[k]);
-  document.querySelectorAll('.radio-item').forEach(i => i.classList.remove('selected'));
-  document.querySelectorAll('.btn.btn-primary').forEach(b => b.disabled = true);
-  showStep('step-1');
-}
-</script>
 </body>
 </html>
