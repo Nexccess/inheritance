@@ -1,4 +1,4 @@
-const FORBIDDEN = ['相談', '専門家', '対策', '手続き', 'すべき', '必要', '緊急'];
+const FORBIDDEN = ['相談', '専門家'];
 
 function calcScore({ age, spouse, children, realestate, business }) {
   let score = 0;
@@ -15,14 +15,6 @@ function getRiskLevel(score) {
   if (score <= 39) return '問題未露出層';
   if (score <= 69) return '表面化予備層';
   return '回避不能層';
-}
-
-function checkOutput(text) {
-  for (const w of FORBIDDEN) {
-    if (text.includes(w)) return false;
-  }
-  if (/\d{2,}/.test(text)) return false;
-  return true;
 }
 
 const SYSTEM_PROMPT = `あなたは「相続に関する一次診断コメント」を作成する専門家です。
@@ -80,7 +72,7 @@ module.exports = async function handler(req, res) {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        system_instruction: { parts: [{ text: SYSTEM_PROMPT }] },
+        systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] },
         contents: [{ role: 'user', parts: [{ text: userText }] }],
         generationConfig: { temperature: 0.35, maxOutputTokens: 600 }
       }),
@@ -95,8 +87,8 @@ module.exports = async function handler(req, res) {
     res.status(502).json({ error: `AI呼び出しエラー: ${e.message}` }); return;
   }
 
-  if (!aiText || !checkOutput(aiText)) {
-    res.status(422).json({ error: '適切なコメントを生成できませんでした。入力を変えて再度お試しください。' }); return;
+  if (!aiText) {
+    res.status(422).json({ error: '適切なコメントを生成できませんでした。' }); return;
   }
 
   const m1 = aiText.match(/【1[^】]*】([\s\S]*?)(?=【2|$)/);
