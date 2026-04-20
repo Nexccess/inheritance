@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/diagnose.js": {
-      "runtime": "edge"
-    }
-  },
   "rewrites": [
     { "source": "/api/(.*)", "destination": "/api/$1" }
   ]
