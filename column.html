@@ -8,8 +8,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500&family=Noto+Serif+JP:wght@300;400&display=swap');
 *{box-sizing:border-box;margin:0;padding:0;}
 body{font-family:'Noto Sans JP',sans-serif;background:#f5f8f4;color:#1e2d1e;}
-.nav{background:#fff;border-bottom:1px solid #d4e4d0;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:54px;}
-.nav-logo{display:flex;align-items:baseline;gap:8px;}
+.nav{background:#fff;border-bottom:1px solid #d4e4d0;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:54px;position:sticky;top:0;z-index:100;}
+.nav-logo{display:flex;align-items:baseline;gap:8px;text-decoration:none;}
 .nav-logo-main{font-size:15px;color:#2d5a3d;font-weight:500;letter-spacing:0.06em;}
 .nav-logo-sub{font-size:10px;color:#7aab88;letter-spacing:0.14em;}
 .nav-links{display:flex;gap:1.75rem;}
@@ -20,46 +20,52 @@ body{font-family:'Noto Sans JP',sans-serif;background:#f5f8f4;color:#1e2d1e;}
 .page-eyebrow{font-size:10px;letter-spacing:0.2em;color:#7aab88;margin-bottom:0.75rem;font-family:'Noto Serif JP',serif;}
 .page-title{font-size:24px;color:#1e3a26;font-weight:300;letter-spacing:0.06em;font-family:'Noto Serif JP',serif;margin-bottom:0.5rem;}
 .page-sub{font-size:12px;color:#7a9a82;line-height:1.8;font-weight:300;}
-.filter-bar{background:#fff;border-bottom:1px solid #d4e4d0;padding:0 2rem;}
-.filter-inner{max-width:680px;margin:0 auto;display:flex;gap:0;overflow-x:auto;}
-.filter-btn{padding:12px 16px;font-size:11px;color:#7a9a82;letter-spacing:0.08em;border:none;background:none;cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-family:'Noto Sans JP',sans-serif;}
-.filter-btn.active{color:#2d5a3d;border-bottom-color:#3d8c5a;font-weight:500;}
 .main{max-width:680px;margin:0 auto;padding:2rem;}
 .section-label{font-size:10px;letter-spacing:0.18em;color:#7aab88;margin-bottom:1rem;font-family:'Noto Serif JP',serif;}
-.featured-card{background:#fff;border:1px solid #d4e4d0;border-radius:4px;overflow:hidden;margin-bottom:2rem;cursor:pointer;}
-.fc-tag{background:#e8f4ec;border-bottom:1px solid #d4e4d0;padding:8px 1.25rem;display:flex;align-items:center;gap:8px;}
-.fc-tag-label{font-size:9px;letter-spacing:0.14em;color:#3d8c5a;font-weight:500;}
-.fc-tag-cat{font-size:9px;color:#7aab88;letter-spacing:0.08em;}
-.fc-body{padding:1.5rem 1.25rem;}
-.fc-date{font-size:10px;color:#aac4b0;letter-spacing:0.1em;margin-bottom:0.75rem;font-family:'Noto Serif JP',serif;}
-.fc-title{font-size:17px;color:#1e3a26;font-weight:300;line-height:1.65;letter-spacing:0.04em;font-family:'Noto Serif JP',serif;margin-bottom:0.75rem;}
-.fc-excerpt{font-size:12px;color:#6a8a72;line-height:2;font-weight:300;}
-.fc-footer{border-top:1px solid #eef4ee;padding:0.75rem 1.25rem;display:flex;justify-content:space-between;align-items:center;}
-.fc-cats{display:flex;gap:6px;}
-.fc-cat{font-size:9px;color:#7aab88;background:#f0f7f2;border:1px solid #d4e4d0;border-radius:2px;padding:2px 8px;letter-spacing:0.06em;}
-.fc-read{font-size:11px;color:#3d8c5a;letter-spacing:0.06em;}
-.article-list{display:flex;flex-direction:column;gap:12px;margin-bottom:2rem;}
-.article-item{background:#fff;border:1px solid #d4e4d0;border-radius:4px;padding:1.25rem;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:center;cursor:pointer;}
-.ai-date{font-size:10px;color:#aac4b0;letter-spacing:0.1em;margin-bottom:6px;font-family:'Noto Serif JP',serif;}
-.ai-title{font-size:14px;color:#1e3a26;font-weight:300;line-height:1.7;letter-spacing:0.02em;font-family:'Noto Serif JP',serif;margin-bottom:8px;}
-.ai-excerpt{font-size:11px;color:#7a9a82;line-height:1.9;font-weight:300;}
-.ai-cats{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
-.ai-cat{font-size:9px;color:#7aab88;background:#f0f7f2;border:1px solid #d4e4d0;border-radius:2px;padding:2px 7px;letter-spacing:0.06em;}
-.ai-arrow{font-size:14px;color:#3d8c5a;flex-shrink:0;}
-.tool-banner{background:#1e3a26;border-radius:4px;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;}
+
+.article-card{background:#fff;border:1px solid #d4e4d0;border-radius:4px;overflow:hidden;margin-bottom:12px;}
+.article-header{padding:1.25rem;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:1rem;align-items:start;}
+.article-header:hover .a-title{color:#3d8c5a;}
+.a-meta{display:flex;align-items:center;gap:10px;margin-bottom:6px;}
+.a-date{font-size:10px;color:#aac4b0;letter-spacing:0.1em;font-family:'Noto Serif JP',serif;}
+.a-tag{font-size:9px;color:#3d8c5a;background:#e8f4ec;border:1px solid #c8dfc8;border-radius:2px;padding:1px 7px;letter-spacing:0.06em;}
+.a-title{font-size:15px;color:#1e3a26;font-weight:300;line-height:1.7;letter-spacing:0.02em;font-family:'Noto Serif JP',serif;margin-bottom:8px;transition:color 0.15s;}
+.a-excerpt{font-size:12px;color:#7a9a82;line-height:1.9;font-weight:300;}
+.a-cats{display:flex;gap:5px;margin-top:10px;flex-wrap:wrap;}
+.a-cat{font-size:9px;color:#7aab88;background:#f0f7f2;border:1px solid #d4e4d0;border-radius:2px;padding:2px 7px;letter-spacing:0.06em;}
+.a-toggle{font-size:18px;color:#7aab88;flex-shrink:0;transition:transform 0.2s;line-height:1;margin-top:4px;}
+.article-card.open .a-toggle{transform:rotate(180deg);}
+
+.article-body{display:none;border-top:1px solid #e8f0e8;padding:1.5rem 1.25rem;background:#fafcfa;}
+.article-card.open .article-body{display:block;}
+.article-body h2{font-size:16px;color:#1e3a26;font-weight:400;font-family:'Noto Serif JP',serif;margin:1.5rem 0 0.75rem;letter-spacing:0.04em;line-height:1.6;}
+.article-body h2:first-child{margin-top:0;}
+.article-body p{font-size:13px;color:#3a5a42;line-height:2.1;font-weight:300;margin-bottom:1rem;}
+.article-body p:last-child{margin-bottom:0;}
+.article-body hr{border:none;border-top:1px solid #d4e4d0;margin:1.5rem 0;}
+.article-body .note{font-size:11px;color:#9ab09e;font-style:italic;line-height:1.8;margin-top:1.5rem;padding-top:1rem;border-top:1px solid #e8f0e8;}
+
+.tool-banner{background:#1e3a26;border-radius:4px;padding:1.5rem;display:flex;justify-content:space-between;align-items:center;margin-top:2rem;}
 .tb-label{font-size:10px;letter-spacing:0.16em;color:#7aab88;margin-bottom:6px;}
 .tb-title{font-size:15px;color:#fff;font-weight:300;letter-spacing:0.04em;font-family:'Noto Serif JP',serif;}
-.tb-btn{background:#3d8c5a;color:#fff;border:none;padding:10px 20px;font-size:12px;letter-spacing:0.1em;border-radius:2px;cursor:pointer;white-space:nowrap;}
-.footer{background:#0a1628;padding:1.75rem 2rem;display:flex;justify-content:space-between;align-items:center;}
+.tb-btn{background:#3d8c5a;color:#fff;border:none;padding:10px 20px;font-size:12px;letter-spacing:0.1em;border-radius:2px;cursor:pointer;white-space:nowrap;font-family:'Noto Sans JP',sans-serif;}
+.footer{background:#0a1628;padding:1.75rem 2rem;display:flex;justify-content:space-between;align-items:center;margin-top:0;}
 .footer-logo{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.12em;}
 .footer-copy{font-size:10px;color:rgba(255,255,255,0.2);letter-spacing:0.06em;}
+@media(max-width:560px){.nav-links{gap:1rem;}.nav-links a{font-size:11px;}}
 </style>
 </head>
 <body>
+
 <nav class="nav">
-  <div class="nav-logo"><span class="nav-logo-main">相続リスク診断</span><span class="nav-logo-sub">by NEXCCESS</span></div>
-  <div class="nav-links"><a href="index.html">診断ツール</a><a href="column.html" class="active">コラム</a><a href="about.html">相続コンサルタントとは</a></div>
+  <a href="index.html" class="nav-logo"><span class="nav-logo-main">相続リスク診断</span><span class="nav-logo-sub">by NEXCCESS</span></a>
+  <div class="nav-links">
+    <a href="diagnosis.html">診断ツール</a>
+    <a href="column.html" class="active">コラム</a>
+    <a href="about.html">相続コンサルタントとは</a>
+  </div>
 </nav>
+
 <div class="page-header">
   <div class="page-header-inner">
     <div class="page-eyebrow">COLUMN</div>
@@ -67,58 +73,116 @@ body{font-family:'Noto Sans JP',sans-serif;background:#f5f8f4;color:#1e2d1e;}
     <p class="page-sub">実際のコンサルティング案件をもとに、相続に関わる論点を整理します。</p>
   </div>
 </div>
-<div class="filter-bar">
-  <div class="filter-inner">
-    <button class="filter-btn active">すべて</button>
-    <button class="filter-btn">事業承継・生命保険</button>
-    <button class="filter-btn">不動産相続</button>
-    <button class="filter-btn">二次相続</button>
-    <button class="filter-btn">相続放棄</button>
-  </div>
-</div>
+
 <div class="main">
-  <div class="section-label" style="margin-top:0.5rem;">LATEST</div>
-  <div class="featured-card">
-    <div class="fc-tag"><span class="fc-tag-label">PICKUP</span><span class="fc-tag-cat">事業承継・生命保険・二次相続</span></div>
-    <div class="fc-body">
-      <div class="fc-date">2026.04.01</div>
-      <h2 class="fc-title">会社経営者の親が急逝した日——保険・退職金・事業承継が、同時に動き出したとき</h2>
-      <p class="fc-excerpt">会社を経営する親が亡くなったとき、遺族が直面するのは「悲しみ」だけではない。逓増定期保険・死亡退職金・事業継承という三つの問題が一気に動き出した案件から見えてきたこと。</p>
-    </div>
-    <div class="fc-footer">
-      <div class="fc-cats"><span class="fc-cat">事業承継</span><span class="fc-cat">生命保険</span><span class="fc-cat">二次相続</span></div>
-      <span class="fc-read">読む →</span>
-    </div>
-  </div>
   <div class="section-label">ARTICLES</div>
-  <div class="article-list">
-    <div class="article-item">
+
+  <!-- 記事1 -->
+  <div class="article-card" id="article-1">
+    <div class="article-header" onclick="toggleArticle('article-1')">
       <div>
-        <div class="ai-date">2026.03.18</div>
-        <div class="ai-title">負債3.1億、資産2.3億の不動産を「放棄できない」理由——一棟マンションの相続で起きたこと</div>
-        <div class="ai-excerpt">相続放棄という言葉は知っていても、「放棄できない状況」があることを知っている人は少ない。不動産の最上階に母が住んでいた——その一点が、すべての選択肢を変えた。</div>
-        <div class="ai-cats"><span class="ai-cat">不動産相続</span><span class="ai-cat">相続放棄</span><span class="ai-cat">二次相続</span></div>
+        <div class="a-meta"><span class="a-date">2026.04.01</span><span class="a-tag">PICKUP</span></div>
+        <div class="a-title">会社経営者の親が急逝した日——保険・退職金・事業承継が、同時に動き出したとき</div>
+        <div class="a-excerpt">会社を経営する親が亡くなったとき、遺族が直面するのは「悲しみ」だけではない。逓増定期保険・死亡退職金・事業承継という三つの問題が一気に動き出した案件から。</div>
+        <div class="a-cats"><span class="a-cat">事業承継</span><span class="a-cat">生命保険</span><span class="a-cat">二次相続</span></div>
       </div>
-      <span class="ai-arrow">→</span>
+      <div class="a-toggle">›</div>
     </div>
-    <div class="article-item">
-      <div>
-        <div class="ai-date">2026.03.05</div>
-        <div class="ai-title">配偶者に多く残すほど、次の相続が重くなる——二次相続という視点を持つだけで、判断が変わる</div>
-        <div class="ai-excerpt">配偶者控除を最大限活用すれば一次相続の税負担は下がる。しかしその選択が二次相続で重くのしかかることがある。時間軸で考える相続の設計。</div>
-        <div class="ai-cats"><span class="ai-cat">二次相続</span><span class="ai-cat">相続税</span><span class="ai-cat">配偶者控除</span></div>
-      </div>
-      <span class="ai-arrow">→</span>
+    <div class="article-body">
+      <p>会社を経営する親が亡くなったとき、遺族が直面するのは「悲しみ」だけではない。私が関わったある案件では、母親の急逝と同時に、保険・退職金・事業承継という三つの問題が一気に動き出した。</p>
+      <hr>
+      <h2>状況の整理</h2>
+      <p>父と母はともに会社経営者だった。会社では節税と保障を兼ねた逓増定期保険（損金算入1/2タイプ）に加入しており、母を被保険者として契約していた。</p>
+      <p>母が急逝したのは、誰も想定していないタイミングだった。</p>
+      <p>保険契約上、保険金は法人が受け取る。この時点で会社の特別利益が一気に膨らむ。同時に、死亡退職金の支給という話が出てくる。死亡退職金は損金に算入できるため、保険金による利益と相殺する形で税負担を抑えることができる——しかし、金額設定と手続きには明確なルールがあり、恣意的には動かせない。</p>
+      <p>保険・退職金の処理を進めながら、並行して「会社を誰が継ぐか」という問題も浮上した。</p>
+      <h2>二次相続をどう考えるか</h2>
+      <p>遺産をどう分けるかを決める際、多くの人は「配偶者に多く残す」という選択をする。配偶者には手厚い税の優遇があるため、その時点での税負担は軽くなる。</p>
+      <p>しかしこの案件では、配偶者（父）の年齢と健康状態を踏まえると、近い将来に二次相続が発生するリスクが現実的だった。父に多くを集中させると、次の相続でまとめて課税される。</p>
+      <p>最終的に、相続人である子2名（成人）が中心となって相続を受け、配偶者の取得分は必要最低限にとどめる形を選択した。税負担の「総量」を時間軸で最小化するという発想だ。</p>
+      <h2>この案件から見えてくること</h2>
+      <p>経営者の相続は、個人の資産だけで完結しない。法人の保険契約・退職金・株式評価・事業継続——これらが複層的に絡み合う。どれか一つを動かせば、必ず別の何かに影響する。</p>
+      <p>「急いで動かせばよかった」という後悔と、「もう少し早く整理しておけばよかった」という声を、この仕事で何度も聞いてきた。会社経営者の家族にとって、相続の準備は「いつか考えること」ではない。</p>
+      <p class="note">本記事は、筆者が実際に関与したコンサルティング案件をもとに、一般的な情報提供を目的として再構成したものです。個別の法律・税務判断については、専門家にご確認ください。</p>
     </div>
   </div>
+
+  <!-- 記事2 -->
+  <div class="article-card" id="article-2">
+    <div class="article-header" onclick="toggleArticle('article-2')">
+      <div>
+        <div class="a-meta"><span class="a-date">2026.03.18</span></div>
+        <div class="a-title">負債3.1億、資産2.3億の不動産を「放棄できない」理由——一棟マンションの相続で起きたこと</div>
+        <div class="a-excerpt">相続放棄という言葉は知っていても、「放棄できない状況」があることを知っている人は少ない。不動産の最上階に母が住んでいた——その一点が、すべての選択肢を変えた。</div>
+        <div class="a-cats"><span class="a-cat">不動産相続</span><span class="a-cat">相続放棄</span><span class="a-cat">二次相続</span></div>
+      </div>
+      <div class="a-toggle">›</div>
+    </div>
+    <div class="article-body">
+      <p>相続放棄という言葉は知っていても、「放棄できない状況」があることを知っている人は少ない。私が関わったクライアントのケースは、まさにその状況だった。</p>
+      <hr>
+      <h2>状況の整理</h2>
+      <p>弟が若くして急病で亡くなった。弟の主な資産は、一棟立てマンション。資産価値はおよそ2.3億円。しかし、購入時の借入がそのまま残っており、負債総額は3.1億円。</p>
+      <p>差し引きすると、実質的な資産はマイナス0.8億円。数字だけ見れば、相続放棄が合理的な選択に見える。ところが、この案件には一つの事情があった。そのマンションの最上階に、母親が住んでいたのだ。</p>
+      <h2>なぜ放棄できないのか</h2>
+      <p>相続放棄は「すべての財産」に対して行う。特定の財産だけ選んで放棄することはできない。</p>
+      <p>仮に相続人全員が放棄すれば、マンションは最終的に国庫に帰属する。母は住む場所を失う。また、相続放棄の手続きは原則として相続開始を知った日から3ヶ月以内に行う必要がある。感情的にも時間的にも、追い詰められた状況で判断を求められる。</p>
+      <h2>二次相続の視点から</h2>
+      <p>今回、相続人は母と兄妹1名だった。負債超過の状況で母が相続を受けると、次の相続（二次相続）でさらに問題が積み上がる可能性がある。最終的に、兄妹1名が相続を引き受け、マンションの運営を継続しながら返済を進める形を選択した。</p>
+      <p>賃料収入でローンを返済し続けることで、時間をかけて債務を圧縮していく——これは「今すぐ解決する」話ではなく、「どう向き合い続けるか」という話だ。</p>
+      <h2>この案件から見えてくること</h2>
+      <p>不動産は、相続において最も「読みにくい」資産の一つだ。価値は変動し、負債が付随し、誰かが「使っている」という事実が判断を縛る。「不動産があるから安心」という認識は、時として逆に働く。</p>
+      <p class="note">本記事は、筆者が実際に関与したコンサルティング案件をもとに、一般的な情報提供を目的として再構成したものです。個別の法律・税務判断については、専門家にご確認ください。</p>
+    </div>
+  </div>
+
+  <!-- 記事3 -->
+  <div class="article-card" id="article-3">
+    <div class="article-header" onclick="toggleArticle('article-3')">
+      <div>
+        <div class="a-meta"><span class="a-date">2026.03.05</span></div>
+        <div class="a-title">配偶者に多く残すほど、次の相続が重くなる——二次相続という視点を持つだけで、判断が変わる</div>
+        <div class="a-excerpt">配偶者控除を最大限活用すれば、一次相続の税負担は大きく下がる。しかしその選択が、二次相続で重くのしかかることがある。時間軸で考える相続の設計。</div>
+        <div class="a-cats"><span class="a-cat">二次相続</span><span class="a-cat">相続税</span><span class="a-cat">配偶者控除</span></div>
+      </div>
+      <div class="a-toggle">›</div>
+    </div>
+    <div class="article-body">
+      <p>「配偶者に多く残してあげたい」という気持ちは自然だ。しかし相続の設計においては、その選択が後に大きな負担を生むことがある。</p>
+      <hr>
+      <h2>配偶者控除という優遇措置</h2>
+      <p>相続税には、配偶者向けの大きな優遇がある。配偶者が取得する財産が、法定相続分か1.6億円のいずれか大きい方の金額以内であれば、相続税がかからない。この制度を使えば、一次相続（最初に発生する相続）の税負担を大幅に減らすことができる。</p>
+      <h2>二次相続で何が起きるか</h2>
+      <p>問題は、その後だ。配偶者が亡くなった時点で二次相続が発生する。このとき、一次相続で配偶者に集中した財産がまとめて子に移る。しかし今度は、配偶者控除は使えない。子には、そのような手厚い優遇はない。</p>
+      <p>つまり、一次相続で節税できた分が、二次相続で一気に課税されるという構図が生まれやすい。</p>
+      <h2>実際のケースで見ると</h2>
+      <p>私が関わった二つの案件はどちらも、二次相続を見据えた設計が最終的な判断の軸になった。一つは会社経営者の案件。配偶者（父）への集中を避け、子2名が中心となって財産を受けた。もう一つは不動産の案件。負債超過という特殊な状況ではあったが、母への集中がその後の展開をさらに複雑にするリスクを考慮した。</p>
+      <p>いずれも、「今の税負担を最小化する」だけでなく、「二回の相続を通じた総負担を最小化する」という発想で動いた。</p>
+      <h2>何を整理しておくべきか</h2>
+      <p>二次相続を考えるためには、まず現時点での財産構成と家族の状況を把握することが出発点になる。配偶者の年齢・健康状態、財産の種類と評価額、相続人の人数——これらの情報が揃って初めて、どのような配分が合理的かという議論ができる。</p>
+      <p>「配偶者に多く残す」ことが悪いわけではない。ただ、それが唯一の選択肢ではないということを知っているかどうかで、判断の幅は変わる。</p>
+      <p class="note">本記事は、筆者が実際に関与したコンサルティング案件をもとに、一般的な情報提供を目的として再構成したものです。個別の法律・税務判断については、専門家にご確認ください。</p>
+    </div>
+  </div>
+
   <div class="tool-banner">
     <div><div class="tb-label">AI TOOL</div><div class="tb-title">自分の状況を、まず整理する。</div></div>
-    <button class="tb-btn" onclick="location.href='index.html'">AI診断を試す</button>
+    <button class="tb-btn" onclick="location.href='diagnosis.html'">AI診断を試す</button>
   </div>
 </div>
+
 <footer class="footer">
   <div class="footer-logo">相続リスク診断 — by NEXCCESS</div>
   <div class="footer-copy">© 2026 合同会社Nexcess. All rights reserved.</div>
 </footer>
+
+<script>
+function toggleArticle(id) {
+  const card = document.getElementById(id);
+  const isOpen = card.classList.contains('open');
+  document.querySelectorAll('.article-card').forEach(c => c.classList.remove('open'));
+  if (!isOpen) card.classList.add('open');
+}
+</script>
 </body>
 </html>
