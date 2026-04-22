@@ -6,7 +6,7 @@
 <title>AI相続一次診断</title>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif; background: #f5f5f3; color: #1a1a1a; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic UI', sans-serif; background: #f5f8f4; color: #1a1a1a; min-height: 100vh; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem; }
   .container { width: 100%; max-width: 560px; }
   .card { background: #fff; border-radius: 12px; padding: 2rem; box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
   .step { display: none; }
@@ -15,25 +15,25 @@
   .subtitle { font-size: 13px; color: #666; line-height: 1.6; margin-bottom: 1.5rem; }
   .progress { display: flex; gap: 4px; margin-bottom: 1.75rem; }
   .progress-dot { height: 3px; flex: 1; border-radius: 2px; background: #e0e0e0; }
-  .progress-dot.done { background: #1a4faa; }
+  .progress-dot.done { background: #3d8c5a; }
   .q-label { font-size: 14px; font-weight: 600; margin-bottom: 12px; }
   .radio-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 1.5rem; }
   .radio-item { display: flex; align-items: center; gap: 10px; padding: 11px 14px; border: 1px solid #e0e0e0; border-radius: 8px; cursor: pointer; transition: border-color 0.15s, background 0.15s; user-select: none; }
-  .radio-item:hover { border-color: #aac0e8; background: #f0f5ff; }
-  .radio-item.selected { border-color: #1a4faa; background: #eef3fc; }
+  .radio-item:hover { border-color: #a8d4b4; background: #f0f7f2; }
+  .radio-item.selected { border-color: #3d8c5a; background: #eef7f1; }
   .radio-dot { width: 16px; height: 16px; border-radius: 50%; border: 1.5px solid #ccc; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
-  .radio-item.selected .radio-dot { border-color: #1a4faa; background: #1a4faa; }
+  .radio-item.selected .radio-dot { border-color: #3d8c5a; background: #3d8c5a; }
   .radio-dot::after { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #fff; display: none; }
   .radio-item.selected .radio-dot::after { display: block; }
   .radio-text { font-size: 14px; }
   .btn { width: 100%; padding: 13px; border: none; border-radius: 8px; font-size: 15px; font-weight: 600; cursor: pointer; transition: opacity 0.15s; }
-  .btn-primary { background: #1a4faa; color: #fff; }
+  .btn-primary { background: #3d8c5a; color: #fff; }
   .btn-primary:hover { opacity: 0.88; }
   .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
   .btn-outline { background: none; border: 1px solid #d0d0d0; color: #555; font-size: 13px; width: auto; padding: 8px 16px; margin-top: 10px; }
   .btn-outline:hover { background: #f5f5f5; }
   .loading { display: flex; align-items: center; gap: 12px; padding: 2.5rem 0; color: #666; font-size: 14px; }
-  .spinner { width: 20px; height: 20px; border: 2px solid #e0e0e0; border-top-color: #1a4faa; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
+  .spinner { width: 20px; height: 20px; border: 2px solid #e0e0e0; border-top-color: #3d8c5a; border-radius: 50%; animation: spin 0.8s linear infinite; flex-shrink: 0; }
   @keyframes spin { to { transform: rotate(360deg); } }
   .result-meta { font-size: 12px; color: #888; margin-bottom: 1.25rem; }
   .result-block { margin-bottom: 1.25rem; }
@@ -48,6 +48,15 @@
   .disclaimer { font-size: 11px; color: #aaa; line-height: 1.6; margin-top: 1.25rem; padding-top: 1rem; border-top: 1px solid #f0f0f0; }
   .btn-row { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
 </style>
+  <meta name="description" content="5問に答えるだけで相続リスクを診断。不動産・事業・自社株・家族構成をもとにAIが現状を整理し、今後の視点を即時提示します。">
+  <meta property="og:title" content="AI相続リスク診断ツール | 相続リスク診断">
+  <meta property="og:description" content="5問に答えるだけで相続リスクを診断。不動産・事業・自社株・家族構成をもとにAIが現状を整理し、今後の視点を即時提示します。">
+  <meta property="og:image" content="https://souzoku.nexccess.com/ogp.png">
+  <meta property="og:url" content="https://souzoku.nexccess.com/diagnosis.html">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ja_JP">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB4klEQVR4nO2Vz0sUYRzGP++MzqblovhjxTwsKlJbdNFLhERBGUYlRF069RdEf0DHoGvgyVMQBBJ0ChLB2A2yjUBiaVGIpKw2Wo2WXWfHyZn322HXS0jOqLCXeU7v5eX5vN8fz6tERGigjEaaRwARQAQA0LTXi6I1omsRohQow6gdQkqFDSIRQW277gCljHBFDVcBEVTd+HNmgeL7PL7n0Tk8wODFc5gxKzREYACpm9tr68zducf3l2ma9R8QYUsM4qkU41MPSJxKgUjgdgRrgQgCeM4mT6/cws6mOTnaR29fK1aLxc+iz9KHX9gtXdx8MUN7sr/OsDtEoFqJrr1+6dlzmvEZv3+XE1fPYGuTj8s/ONrjcHosQayyxruH04ACHWy0Qg1h+VuBQ/E2rHgbAHapSnbqEb9nn3A2WSS36LDi93M7l6EpZgVqRWAAt7LB19dvKWQXWc8vo0yTY9cnOH5jEm9LI/k05U9fKJQsBicnaO3sOFgA7Xn4jgumgVuusDI7T+7xDG5pg+Frl+geGcHfdBDXIXl+jCOJbkDBLmMQOgf+1eqrN6xmFvCqVTqGBhi6fIHDvT2BN2FvACK1fTcNdnziga/h/1i2I7le7bCRvG+A/arhv2EEEAFEABFABPAXaz3cX2YfZLcAAAAASUVORK5CYII=">
 </head>
 <body>
 <div class="container">
