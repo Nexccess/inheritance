@@ -2,8 +2,7 @@
   "version": 2,
   "functions": {
     "api/diagnose.js": {
-      "runtime": "nodejs18.x"
+      "runtime": "edge"
     }
   }
 }
-``
